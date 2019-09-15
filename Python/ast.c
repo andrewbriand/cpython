@@ -2677,7 +2677,7 @@ ast_for_trailer(struct compiling *c, const node *n, expr_ty left_expr)
         if (!attr_id)
             return NULL;
         return Attribute(left_expr, attr_id, Load,
-                         LINENO(n), n->n_col_offset,
+                         LINENO(n), CHILD(n, 1)->n_col_offset,
                          n->n_end_lineno, n->n_end_col_offset, c->c_arena);
     }
     else {
@@ -2803,7 +2803,6 @@ ast_for_atom_expr(struct compiling *c, const node *n)
         if (!tmp)
             return NULL;
         tmp->lineno = e->lineno;
-        tmp->col_offset = e->col_offset;
         e = tmp;
     }
 
